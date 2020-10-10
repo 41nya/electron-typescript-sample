@@ -1,10 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-  mode: "development",
-  entry: __dirname +  "/src/index.ts",
+const mainConfig = {
+  target: 'electron-main',
+  mode: 'development',
+  entry: __dirname + '/src/main/main.ts',
   output: {
-    filename: "bundle.js",
+    filename: 'main.js',
     path: __dirname + '/dist'
   },
   module: {
@@ -16,10 +17,27 @@ module.exports = {
       }
     ]
   },
-  target: 'electron-main',
-  devServer: {
-    port: 8080,
-    open: "Google Chrome",
+  resolve: {
+    extensions: [".ts", ".js"]
+  }
+};
+
+const rendererConfig = {
+  target: 'electron-renderer',
+  mode: 'development',
+  entry: __dirname + '/src/renderer/renderer.ts',
+  output: {
+    filename: 'renderer.js',
+    path: __dirname + '/dist'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts)$/,
+        exclude: /node_modules/,
+        loader: "ts-loader"
+      }
+    ]
   },
   resolve: {
     extensions: [".ts", ".js"]
@@ -30,3 +48,5 @@ module.exports = {
     })
   ]
 };
+
+module.exports = [mainConfig, rendererConfig];
