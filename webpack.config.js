@@ -40,7 +40,8 @@ const rendererConfig = {
     ]
   },
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: [".ts", ".js"],
+    mainFields: ['main', 'browser']
   },
   plugins: [
     new HtmlWebpackPlugin({
