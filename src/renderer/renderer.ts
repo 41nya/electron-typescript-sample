@@ -1,7 +1,17 @@
-const WriteVersion = () => {
-    document.write('We are using node ' + process.versions.node);
-    document.write('Chrome ' + process.versions.zlib);
-    document.write('and Electron ' + process.versions.v8);
+function  connect(){
+    console.log("connect!");
 }
 
-WriteVersion();
+function start(){
+    console.log("start!");
+}
+
+function stop(){
+    console.log("stop!");
+}
+
+window.onload = function (event) {
+    document.getElementById('connect').onclick = connect;
+    document.getElementById('start').onclick = start;
+    document.getElementById('stop').onclick = stop;
+};
